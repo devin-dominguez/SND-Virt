@@ -1,0 +1,48 @@
+#N canvas 3360 45 1018 721 10;
+#X obj 92 87 netreceive -u -b 6666;
+#X obj 92 109 oscparse;
+#X obj 92 180 s Origin;
+#X obj 162 180 s Wave;
+#X obj 92 153 route Origin Wave Particle Emitter;
+#X obj 218 180 s Particle;
+#X obj 302 180 s Emitter;
+#X obj 132 406 r Origin;
+#X obj 132 428 spigot;
+#X obj 132 450 print Origin;
+#X obj 186 428 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 232 428 spigot;
+#X obj 286 428 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 332 428 spigot;
+#X obj 386 428 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 442 428 spigot;
+#X obj 496 428 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 232 406 r Wave;
+#X obj 332 406 r Particle;
+#X obj 442 406 r Emitter;
+#X obj 232 450 print Wave;
+#X obj 332 450 print Particle;
+#X obj 442 450 print Emitter;
+#X obj 92 131 list trim;
+#X connect 0 0 1 0;
+#X connect 1 0 23 0;
+#X connect 4 0 2 0;
+#X connect 4 1 3 0;
+#X connect 4 2 5 0;
+#X connect 4 3 6 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 10 0 8 1;
+#X connect 11 0 20 0;
+#X connect 12 0 11 1;
+#X connect 13 0 21 0;
+#X connect 14 0 13 1;
+#X connect 15 0 22 0;
+#X connect 16 0 15 1;
+#X connect 17 0 11 0;
+#X connect 18 0 13 0;
+#X connect 19 0 15 0;
+#X connect 23 0 4 0;
