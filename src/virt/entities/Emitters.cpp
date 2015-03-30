@@ -32,6 +32,14 @@ Emitter::Emitter(ofVec2f pos){
 	}
 	voiceNumber = i;
 	voices[voiceNumber] = true;
+
+	soundObject.setup("Emitter", voiceNumber, audioMessageInterval);
+
+	soundObject.messageNow("color", color);
+	soundObject.messageNow("x", pos.x / World::getSize().x);
+	soundObject.messageNow("y", pos.y / World::getSize().y);
+	soundObject.messageNow("phase", phase);
+	soundObject.messageNow("hit", 0);
 }
 //--------------------------------------------------------------
 Emitter::~Emitter() {
@@ -43,11 +51,13 @@ void Emitter::update(double dt) {
 	ofVec2f displacement, wobble;
 	t += dt;
 	double wobbleAmp;
+	bool notHit = false;
 	switch(phase) {
 		case START:
 			collidable = false;
 			if(!fadeIn(dt)) {
 				phase = MIDDLE;
+				soundObject.messageNow("phase", phase);
 			}
 		break;
 
@@ -72,11 +82,21 @@ void Emitter::update(double dt) {
 
 			//reset collision
 			for(int i = 0; i < 5; i++) {
+				
+				
+				if(!beingHitByWave[i] && hasBeenHitByWave[i]) {
+					notHit = true;
+				}
+
 				hasBeenHitByWave[i] = beingHitByWave[i];
-			}
-			for(int i = 0; i < 5; i++) {
+
 				beingHitByWave[i] = false;
 			}
+
+			if(notHit) {
+				soundObject.messageNow("hit", 0);
+			}
+
 
 		break;
 
@@ -91,17 +111,32 @@ void Emitter::update(double dt) {
 	height = World::getAverageHeight(pos, size) / 255.0;
 	
 
+	soundObject.update(dt);
 
+}
+//--------------------------------------------------------------
+
+void Emitter::kill() {
+	Entity::kill();
+	soundObject.messageNow("phase", phase);
 }
 //--------------------------------------------------------------
 void Emitter::collision(Entity* e) {
 	if(e->getType() == WAVE) {
 		unsigned char waveColor = e->getColor();
-
+	
 		beingHitByWave[waveColor] = true;
-
 		if(waveColor == 0) {
 			hitAngle = atan2(pos.y - e->getPosition().y, pos.x - e->getPosition().x);
+		}
+		bool newHit = true;	
+		for(int i = 0; i < 5; i++) {
+			if(hasBeenHitByWave[i]) {
+				newHit = false;
+			}
+		}
+		if(newHit) {
+			soundObject.messageNow("hit", 1);
 		}
 
 	}

@@ -20,6 +20,8 @@ public:
 
 	static vector<Entity*> container;
 protected:
+	void kill();
+	
 	static double fadeInTime;
 	static double fadeOutTime;
 	static double snapOutRate;
