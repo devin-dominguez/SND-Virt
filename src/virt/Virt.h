@@ -2,9 +2,9 @@
 
 #include "ofMain.h"
 #include "World.h"
-#include "Entities.h"
 #include "Settings.h"
 #include "AudioSystem.h"
+#include "Entities.h"
 
 class Virt {
 public:

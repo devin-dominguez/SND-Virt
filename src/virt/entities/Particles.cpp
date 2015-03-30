@@ -22,7 +22,6 @@ Particle::Particle(ofVec2f pos, unsigned char color, double angle, double initVe
 	this->color = color;
 
 	downTime = 0;
-
 }
 //--------------------------------------------------------------
 //BASE PARTICLE

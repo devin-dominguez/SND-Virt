@@ -8,6 +8,9 @@ double Emitter::fadeOutTime = 1;
 double Emitter::snapOutRate = 10;
 double Emitter::snapInRate = 10;
 
+double Emitter::audioMessageInterval = .1;
+bool Emitter::voices[] = {false};
+
 vector<Entity*> Emitter::container;
 
 //--------------------------------------------------------------
@@ -22,6 +25,17 @@ Emitter::Emitter(ofVec2f pos){
 	ampTarget = 0;
 	hitAngle = 0;
 	t = 0;
+
+	int i = 0;
+	while(voices[i]) {
+		i++;
+	}
+	voiceNumber = i;
+	voices[voiceNumber] = true;
+}
+//--------------------------------------------------------------
+Emitter::~Emitter() {
+	voices[voiceNumber] = false;
 }
 //--------------------------------------------------------------
 void Emitter::update(double dt) {
@@ -238,6 +252,10 @@ ParticleEmitter::ParticleEmitter(ofVec2f pos, unsigned char color) : Emitter(pos
 
 	readyA = false;
 	readyB = false;
+
+	rotation = 0;
+	ampA = 0;
+	ampB = 0;
 }
 //--------------------------------------------------------------
 void ParticleEmitter::update(double dt) {
@@ -352,7 +370,7 @@ void ParticleEmitter::draw() {
 				ofRotate(angle);
 					ofSetRectMode(OF_RECTMODE_CENTER);
 					ofRectRounded(size, 0, ampB, size * .35, 10);
-			ofPopMatrix();
+				ofPopMatrix();
 		}
 
 		//main ring

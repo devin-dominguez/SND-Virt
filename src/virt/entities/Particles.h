@@ -12,7 +12,6 @@ class Particle : public PhysicsObject {
 friend class Settings;
 public:
 	Particle(ofVec2f pos, unsigned char color, double angle, double initVelocity);
-
 	void update(double dt);
 	void collision(Entity* e);
 

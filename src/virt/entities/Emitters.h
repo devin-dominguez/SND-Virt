@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Particles.h"
 #include "Waves.h"
+//#include "SoundObject.h"
 
 class Settings;
 
@@ -13,11 +14,11 @@ friend class Settings;
 
 public:
 	Emitter(ofVec2f pos);
+	~Emitter();
 	void update(double dt);
 	void collision(Entity* e);
 
 	static vector<Entity*> container;
-
 protected:
 	static double fadeInTime;
 	static double fadeOutTime;
@@ -38,6 +39,10 @@ protected:
 
 	double height;
 
+	static double audioMessageInterval; 	
+	static bool voices[8];
+	unsigned int voiceNumber;
+	SoundObject soundObject;
 
 };
 //--------------------------------------------------------------

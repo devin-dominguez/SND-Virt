@@ -29,7 +29,7 @@ protected:
 	double timeRemaining;
 
 	static double audioMessageInterval;
-	static bool voices[];
+	static bool voices[12];
 	unsigned int voiceNumber;
 
 	SoundObject soundObject;

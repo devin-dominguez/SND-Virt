@@ -1,7 +1,7 @@
 #include "Waves.h"
 
 double Wave::audioMessageInterval = .1;
-bool Wave::voices[12] = {false};
+bool Wave::voices[] = {false};
 
 vector<Entity*> Wave::container;
 

@@ -9,8 +9,10 @@ void Virt::setup(ofPixels *heightMap) {
 	dt = 0;
 	pt = ofGetElapsedTimef();
 
-	Origin::container.push_back(new Origin());
+	Settings::setup();
+	AudioSystem::setup("localhost", 6666);
 
+	Origin::container.push_back(new Origin());
 
 	Emitter::container.push_back(new WaveEmitter(ofVec2f(100, 100)));
 	Emitter::container.push_back(new WaveEmitter(ofVec2f(600, 300)));
@@ -18,8 +20,6 @@ void Virt::setup(ofPixels *heightMap) {
 	Emitter::container.push_back(new ParticleEmitter(ofVec2f(500, 450), 1));
 	Emitter::container.push_back(new ParticleEmitter(ofVec2f(200, 350), 2));
 
-	Settings::setup();
-	AudioSystem::setup("localhost", 6666);
 
 }
 //--------------------------------------------------------------
