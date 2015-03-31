@@ -5,7 +5,7 @@
 #include "Entity.h"
 #include "Particles.h"
 #include "Waves.h"
-//#include "SoundObject.h"
+#include "SoundObject.h"
 
 class Settings;
 
@@ -13,7 +13,7 @@ class Emitter : public Entity {
 friend class Settings;
 
 public:
-	Emitter(ofVec2f pos);
+	Emitter(ofVec2f pos, unsigned char color);
 	~Emitter();
 	void update(double dt);
 	void collision(Entity* e);
@@ -53,7 +53,7 @@ class WaveEmitter : public Emitter {
 friend class Settings;
 
 public:
-	WaveEmitter(ofVec2f pos);
+	WaveEmitter(ofVec2f pos, unsigned char color);
 
 	void update(double dt);
 	void draw();

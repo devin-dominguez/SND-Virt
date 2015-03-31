@@ -14,13 +14,15 @@ bool Emitter::voices[] = {false};
 vector<Entity*> Emitter::container;
 
 //--------------------------------------------------------------
-Emitter::Emitter(ofVec2f pos){
+Emitter::Emitter(ofVec2f pos, unsigned char color){
 	localPos = pos;
 	Entity::pos = localPos;
 
 	Entity::fadeInTime = fadeInTime;
 	Entity::fadeOutTime = fadeOutTime;
 
+	this->color = color;
+	
 	amp = 0;
 	ampTarget = 0;
 	hitAngle = 0;
@@ -156,7 +158,7 @@ double WaveEmitter::spinnerOffset = 20.0;
 double WaveEmitter::displacementAmmount = 3.0;
 unsigned int WaveEmitter::spinnerResolution = 6;
 //--------------------------------------------------------------
-WaveEmitter::WaveEmitter(ofVec2f pos) : Emitter(pos) {
+WaveEmitter::WaveEmitter(ofVec2f pos, unsigned char color) : Emitter(pos, color) {
 	type = WAVE_EMITTER;
 	Entity::size = size;
 	Emitter::displacementAmmount = displacementAmmount;
@@ -250,7 +252,7 @@ void WaveEmitter::draw() {
 		ofPopStyle();
 		
 		//main ring
-		ofSetColor(colorTable[4], alpha);
+		ofSetColor(colorTable[color], alpha);
 		ofCircle(origin, size);
 		//masking
 		ofSetColor(0, alpha);
@@ -274,14 +276,13 @@ double ParticleEmitter::maxRate = .1;
 double ParticleEmitter::coolDownTime = 3;
 double ParticleEmitter::easeRate = 10;
 
-ParticleEmitter::ParticleEmitter(ofVec2f pos, unsigned char color) : Emitter(pos) {
+ParticleEmitter::ParticleEmitter(ofVec2f pos, unsigned char color) : Emitter(pos, color) {
 	type = PARTICLE_EMITTER;
 	Entity::size = size;
 	Emitter::displacementAmmount = displacementAmmount;
 	Emitter::wobbleAmmount = wobbleAmmount;
 	Emitter::wobbleFreq = wobbleFreq;
 
-	this->color = color;
 	coolDownA = coolDownTime;
 	coolDownB = coolDownTime;
 

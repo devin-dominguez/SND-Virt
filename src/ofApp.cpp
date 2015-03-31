@@ -9,11 +9,22 @@ void ofApp::setup(){
 	
 	heightMap.setup(160, 120);
 	virt.setup(heightMap.getPixelsRef());
+
+	waveEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(100, 100), 4));
+	waveEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(600, 300), 4));
+	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(400, 120), 2));
+	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(500, 450), 1));
+	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(200, 350), 2));
+
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 	heightMap.update();
+
+	virt.updateEmitters(waveEmitterLocations, "wave");
+	virt.updateEmitters(particleEmitterLocations, "particle");
 	virt.update();
 }
 
@@ -26,19 +37,19 @@ void ofApp::draw(){
 	
 	ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
 	ofRotate(0);
-	double offsetX = -displaySize.x / 2;
-	double offSetY = -displaySize.y / 2;
+		double offsetX = -displaySize.x / 2;
+		double offSetY = -displaySize.y / 2;
 
-	heightMap.draw(offsetX, offSetY, displaySize.x, displaySize.y);
-	virt.draw(offsetX, offSetY, displaySize.x, displaySize.y);
+		heightMap.draw(offsetX, offSetY, displaySize.x, displaySize.y);
+		virt.draw(offsetX, offSetY, displaySize.x, displaySize.y);
 
-	//masking
-	ofFill();
-	ofSetColor(0);
-	ofRect(-10000 + offsetX, 0 + offSetY, 20000, -10000); //top
-	ofRect(-10000 + offsetX, displaySize.y + offSetY, 20000, 10000); //bottom
-	ofRect(0 + offsetX, -10000, -10000 + offSetY, 20000); //left
-	ofRect(displaySize.x + offsetX, -10000 + offSetY, 10000, 20000); //right
+		//masking
+		ofFill();
+		ofSetColor(0);
+		ofRect(-10000 + offsetX, 0 + offSetY, 20000, -10000); //top
+		ofRect(-10000 + offsetX, displaySize.y + offSetY, 20000, 10000); //bottom
+		ofRect(0 + offsetX, -10000, -10000 + offSetY, 20000); //left
+		ofRect(displaySize.x + offsetX, -10000 + offSetY, 10000, 20000); //right
 
 	ofPopStyle();
 	ofPopMatrix();

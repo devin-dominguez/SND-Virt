@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "testing/AutoHeightMap.h"
-#include "virt/Virt.h"
+#include "AutoHeightMap.h"
+#include "Virt.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -20,9 +20,14 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+private:
 		AutoHeightMap heightMap;
 		Virt virt;
 
 		ofVec2f displaySize;
+
+		vector<Virt::emitterLocation> particleEmitterLocations;
+		vector<Virt::emitterLocation> waveEmitterLocations;
 		
+
 };
