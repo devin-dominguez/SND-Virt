@@ -5,6 +5,7 @@
 #include "PhysicsObject.h"
 #include "Emitters.h"
 #include "SpecialFX.h"
+#include "SoundObject.h"
 
 class Settings;
 
@@ -28,6 +29,10 @@ protected:
 	double maxSize;
 
 	double downTime;
+
+	bool hit;
+
+	SoundObject soundObject;
 };
 
 //--------------------------------------------------------------
@@ -36,6 +41,7 @@ class ParticleA : public Particle {
 friend class Settings;
 public:
 	ParticleA(ofVec2f pos, unsigned char color, double angle);
+	~ParticleA();
 	void draw();
 	void update(double dt);
 	void collision(Entity* e);
@@ -57,6 +63,12 @@ protected:
 	bool penetrating;
 	double angleOfPenetration;
 
+	static double audioMessageInterval;
+	static bool voices[48];
+	unsigned int voiceNumber;
+
+
+
 };
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -64,6 +76,7 @@ class ParticleB : public Particle {
 friend class Settings;
 public:
 	ParticleB(ofVec2f pos, unsigned char color, double angle);
+	~ParticleB();
 	void draw();
 	void update(double dt);
 
@@ -79,6 +92,10 @@ protected:
 
 
 	ofVec2f lastPos;
+
+	static double audioMessageInterval;
+	static bool voices[12];
+	unsigned int voiceNumber;
 
 };
 

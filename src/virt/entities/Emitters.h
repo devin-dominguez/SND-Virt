@@ -19,8 +19,8 @@ public:
 	void collision(Entity* e);
 
 	static vector<Entity*> container;
-protected:
 	void kill();
+protected:
 	
 	static double fadeInTime;
 	static double fadeOutTime;
