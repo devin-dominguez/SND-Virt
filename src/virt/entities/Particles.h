@@ -45,6 +45,7 @@ public:
 	void draw();
 	void update(double dt);
 	void collision(Entity* e);
+	void kill();
 protected:
 	static double mass;
 	static double minSize;
@@ -56,8 +57,6 @@ protected:
 	static double explosionSize;
 	static double penetrationArc;
 
-	void kill();
-
 	double timeRemaining;
 
 	bool penetrating;
@@ -66,9 +65,6 @@ protected:
 	static double audioMessageInterval;
 	static bool voices[48];
 	unsigned int voiceNumber;
-
-
-
 };
 //--------------------------------------------------------------
 //--------------------------------------------------------------
@@ -79,6 +75,7 @@ public:
 	~ParticleB();
 	void draw();
 	void update(double dt);
+	void kill();
 
 protected:
 	static double mass;
@@ -88,7 +85,6 @@ protected:
 	static double friction;
 	static double explosionSize;
 
-	void kill();
 
 
 	ofVec2f lastPos;

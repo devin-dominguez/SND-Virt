@@ -33,6 +33,7 @@ public:
 	virtual void update(double dt);
 	virtual void draw();
 	virtual void collision(Entity* e);
+	virtual void kill();
 
 	//iterator methods
 	static void updateAll(vector<Entity*> &e, double dt);
@@ -46,7 +47,6 @@ public:
 
 protected:
 
-	virtual void kill();
 
 	//instance id number
 	static unsigned long currentId;

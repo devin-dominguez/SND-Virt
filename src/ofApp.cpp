@@ -10,11 +10,11 @@ void ofApp::setup(){
 	heightMap.setup(160, 120);
 	virt.setup(heightMap.getPixelsRef());
 
-	waveEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(100, 100), 4));
-	waveEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(600, 300), 4));
-	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(400, 120), 2));
-	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(500, 450), 1));
-	particleEmitterLocations.push_back(Virt::emitterLocation(ofVec2f(200, 350), 2));
+	emitterLocations.push_back(Virt::emitterLocation(ofVec2f(100, 100), 4, Entity::WAVE_EMITTER));
+	emitterLocations.push_back(Virt::emitterLocation(ofVec2f(600, 300), 4, Entity::WAVE_EMITTER));
+	emitterLocations.push_back(Virt::emitterLocation(ofVec2f(400, 120), 2, Entity::PARTICLE_EMITTER));
+	emitterLocations.push_back(Virt::emitterLocation(ofVec2f(500, 450), 1, Entity::PARTICLE_EMITTER));
+	emitterLocations.push_back(Virt::emitterLocation(ofVec2f(200, 350), 2, Entity::PARTICLE_EMITTER));
 
 
 }
@@ -23,8 +23,7 @@ void ofApp::setup(){
 void ofApp::update(){
 	heightMap.update();
 
-	virt.updateEmitters(waveEmitterLocations, "wave");
-	virt.updateEmitters(particleEmitterLocations, "particle");
+	virt.updateEmitters(emitterLocations);
 	virt.update();
 }
 

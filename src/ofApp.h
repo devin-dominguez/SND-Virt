@@ -26,8 +26,5 @@ private:
 
 		ofVec2f displaySize;
 
-		vector<Virt::emitterLocation> particleEmitterLocations;
-		vector<Virt::emitterLocation> waveEmitterLocations;
-		
-
+		vector<Virt::emitterLocation> emitterLocations;
 };

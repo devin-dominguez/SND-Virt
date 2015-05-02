@@ -14,6 +14,7 @@ public:
 	~Wave();
 	void update(double dt);
 	void draw();
+	void kill();
 
 	static vector<Entity*> container;
 	
@@ -21,7 +22,6 @@ public:
 protected:
 	void grow(double dt);
 
-	void kill();
 	
 	double growthRate;
 	double initialGrowthRate;
